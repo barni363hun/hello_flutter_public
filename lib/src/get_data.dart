@@ -14,8 +14,7 @@ class GetData extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
-            return Text(
-                "username: ${data['username']}, Points: ${data['points']}");
+            return Text("${data['username']} - ${data['points']} second");
           }
           return Text("loading...");
         }));

@@ -100,14 +100,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: _user.displayName != null
-            ? Text('Welcome ${_user.displayName}')
-            : const Text('Welcome'),
+            ? Text('Welcome ${_user.displayName}!')
+            : const Text('Welcome!'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Text(
+              'Leaderboard:',
+            ),
             Expanded(
                 child: ListView.builder(
                     itemCount: docIDs.length,
@@ -134,7 +137,7 @@ class _HomePageState extends State<HomePage> {
             // ),
             TextButton(
               onPressed: _getData,
-              child: const Text('Get leaderboard'),
+              child: const Text('Update leaderboard'),
             ),
             TextButton(
                 onPressed: () async {
