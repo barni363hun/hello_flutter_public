@@ -1,0 +1,4 @@
+repository "embed_3d@unity_E00BADCDB35DD2197EDE@cloud"
+  path "/"
+    br "/main"
+    co "/main"
