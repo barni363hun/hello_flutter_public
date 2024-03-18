@@ -1,6 +1,10 @@
 # Flutter + Untiy project
 
-## [.apk](https://drive.google.com/file/d/1dvAC40JtWkphT-DzQG51aVdA26QCKS38/view?usp=sharing)
+## exported app
+
+[PB_mobile_app.apk](https://drive.google.com/file/d/1dvAC40JtWkphT-DzQG51aVdA26QCKS38/view?usp=sharing)
+
+Compatibility Problem! It crushes on some devices :(
 
 ## mostly used tutorials:
 

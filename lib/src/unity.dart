@@ -4,14 +4,14 @@ import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
 
-class UnityDemoScreen extends StatefulWidget {
-  const UnityDemoScreen({Key? key}) : super(key: key);
+class UnityScreen extends StatefulWidget {
+  const UnityScreen({super.key});
 
   @override
-  State<UnityDemoScreen> createState() => _UnityDemoScreenState();
+  State<UnityScreen> createState() => _UnityScreenState();
 }
 
-class _UnityDemoScreenState extends State<UnityDemoScreen> {
+class _UnityScreenState extends State<UnityScreen> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
       GlobalKey<ScaffoldState>();
   UnityWidgetController? _unityWidgetController;
@@ -52,7 +52,7 @@ class _UnityDemoScreenState extends State<UnityDemoScreen> {
       'Reset',
       '',
     );
-    timer = Timer.periodic(Duration(seconds: 1), (_) => addTime());
+    timer = Timer.periodic(const Duration(seconds: 1), (_) => addTime());
 
     // Listen to gyroscope data stream
     gyroscopeEvents.listen((GyroscopeEvent event) {
@@ -150,20 +150,20 @@ class _UnityDemoScreenState extends State<UnityDemoScreen> {
     } else if (message == "done") {
       Navigator.pop(context, duration.inSeconds);
     } else {
-      print('Received message from unity: ${message.toString()}');
+      //print('Received message from unity: ${message.toString()}');
       // Show a simple popup message to the user in Flutter
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Message from Unity'),
+            title: const Text('Message from Unity'),
             content: Text(message.toString()),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(); // Close the dialog
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );
@@ -172,13 +172,5 @@ class _UnityDemoScreenState extends State<UnityDemoScreen> {
     }
   }
 
-  // void onUnitySceneLoaded(SceneLoaded? scene) {
-  //   if (scene != null) {
-  //     print('Received scene loaded from unity: ${scene.name}');
-  //     print('Received scene loaded from unity buildIndex: ${scene.buildIndex}');
-  //   } else {
-  //     print('Received scene loaded from unity: null');
-  //   }
-  // }
   String twoDigits(int n) => n.toString().padLeft(2, '0');
 }

@@ -16,7 +16,7 @@ class GetData extends StatelessWidget {
                 snapshot.data!.data() as Map<String, dynamic>;
             return Text("${data['username']} - ${data['points']} second");
           }
-          return Text("loading...");
+          return const Text("loading...");
         }));
   }
 }

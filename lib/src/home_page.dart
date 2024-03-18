@@ -1,17 +1,3 @@
-// Copyright 2022 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import 'dart:async';
 import 'package:authentication/src/get_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -34,12 +20,6 @@ class _HomePageState extends State<HomePage> {
   String myDocId = '';
   int pb = 9223372036854775807;
 
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
-
   void _getData() async {
     docIDs.clear();
     await FirebaseFirestore.instance
@@ -50,13 +30,11 @@ class _HomePageState extends State<HomePage> {
               docIDs.add(element.reference.id);
               if (element["username"] == _user.displayName) {
                 myDocId = element.reference.id;
-                // print(myDocId);
                 if (pb > element["points"]) {
                   pb = element["points"];
                 }
               }
             }));
-    // print(docIDs.length);
     setState(() {});
   }
 
@@ -131,10 +109,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-            // TextButton(
-            //   onPressed: () async {},
-            //   child: const Text('Save'),
-            // ),
             TextButton(
               onPressed: _getData,
               child: const Text('Update leaderboard'),
@@ -158,8 +132,6 @@ class _HomePageState extends State<HomePage> {
                   return;
                 }
                 if (FirebaseAuth.instance.currentUser != null) {
-                  // Refresh the UI with a new user instance
-                  // to catch any changes done in the profile screen
                   setState(() {
                     _user = FirebaseAuth.instance.currentUser!;
                   });
@@ -170,18 +142,11 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
-      // ),
     );
   }
 
   void setPoints(int points) {
     _pointsEarned = points;
-    // popUp("Setting points to: ",
-    //     "$points docid len-mine: ${docIDs.length}$myDocId");
     if (points != 0) {
       if (!docIDs.contains(myDocId)) {
         FirebaseFirestore.instance
@@ -195,8 +160,6 @@ class _HomePageState extends State<HomePage> {
       }
     }
   }
-
-  String twoDigits(int n) => n.toString().padLeft(2, '0');
 
   String pointsEarnedString() {
     int minutes = _pointsEarned ~/ 60;
@@ -225,4 +188,6 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  String twoDigits(int n) => n.toString().padLeft(2, '0');
 }
